@@ -1,0 +1,50 @@
+program diamond;
+procedure Diamond(n : integer); 
+var 
+	count_of_spaces : integer;
+	i, j, spaces : byte;
+begin	
+	writeln;
+	count_of_spaces := 0;
+	for i := (n div 2) downto 0 do
+	begin
+		for j := i downto 1 do 
+			write(#32);
+		write('*');
+		if (count_of_spaces = 0) then 
+		begin
+			count_of_spaces := count_of_spaces + 1;
+			writeln;
+			continue
+		end;
+		for spaces := 1 to count_of_spaces do
+			write(#32);
+		writeln('*');
+		count_of_spaces := count_of_spaces + 2
+	end;
+	count_of_spaces := count_of_spaces - 4;
+	for i := 1 to (n div 2) do
+	begin
+		for j := 1 to i do 
+			write(#32);
+		write('*');
+		if count_of_spaces <= 0 then
+		begin
+			writeln;
+			break
+		end;
+		for spaces := 1 to count_of_spaces do
+			write(#32);
+		writeln('*');
+		count_of_spaces := count_of_spaces - 2
+	end
+end;
+var 
+	n : integer;
+begin
+	repeat
+		write('Введите нечетное положительное число:  ');
+		readln(n)
+	until (n <= 0) or (n mod 2 = 1);
+	Diamond(n)
+end.			
